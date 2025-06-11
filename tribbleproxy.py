@@ -1,9 +1,10 @@
 from mitmproxy import http
-from json import load
+from json import loads
 with open("tribbleproxy.properties") as properties:
-  USERNAME = load(properties)["username"]
-  SKIN = load(properties)["skin"]
-  CAPE = load(properties)["cape"]
+  data = loads(properties.read())
+  USERNAME = data["username"]
+  SKIN = data["skin"]
+  CAPE = data["cape"]
 def response(flow: http.HTTPFlow) -> None:
   global USERNAME, SKIN, CAPE
   if flow.request.host == "s3.amazonaws.com" and flow.request.path == f"/MinecraftSkins/{USERNAME}.png":
