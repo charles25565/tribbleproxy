@@ -2,7 +2,7 @@
 
 Tribbleproxy is a simple proxy that simulates the endpoints for skins and capes for old versions of Minecraft.
 
-In theory it would work for any Minecraft version that uses the MinecraftSkins/MinecraftCloaks AWS S3 bucket.
+In theory it would work for any Minecraft version that uses the `MinecraftSkins`/`MinecraftCloaks` AWS S3 bucket.
 
 ## Example Configuration
 
