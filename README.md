@@ -10,9 +10,10 @@ Save this as `tribbleproxy.properties`.
 
 ```json
 {
-  "username": "charles25565",
-  "skin": "skin.png",
-  "cape": "cape.png"
+  "charles25565": {
+    "skin": "skin.png",
+    "cape": "cape.png"
+  }
 }
 ```
 

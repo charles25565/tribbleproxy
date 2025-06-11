@@ -1,17 +1,26 @@
-from mitmproxy import http
-from json import loads
-with open("tribbleproxy.properties") as properties:
-  data = loads(properties.read())
-  USERNAME = data["username"]
-  SKIN = data["skin"]
-  CAPE = data["cape"]
-def response(flow: http.HTTPFlow) -> None:
-  global USERNAME, SKIN, CAPE
-  if flow.request.host == "s3.amazonaws.com" and flow.request.path == f"/MinecraftSkins/{USERNAME}.png":
-    with open(SKIN, "rb") as skin:
-      flow.response.content = skin.read()
-      flow.response.status_code = 200
-  if flow.request.host == "s3.amazonaws.com" and flow.request.path == f"/MinecraftCloaks/{USERNAME}.png":
-    with open(CAPE, "rb") as cape:
-      flow.response.content = cape.read()
-      flow.response.status_code = 200
+import mitmproxy
+import json
+
+with open("tribbleproxy.properties", "r") as properties:
+    DATA = json.load(properties)
+
+def serve_image(flow: mitmproxy.http.HTTPFlow, resource_type: str) -> None:
+    USERNAME = flow.request.path.split("/")[-1].split(".png")[0]
+    try:
+        filename = DATA[USERNAME][resource_type]
+        with open(filename, "rb") as f:
+            flow.response = mitmproxy.http.Response.make(
+                200, f.read(), {"Content-Type": "image/png"}
+            )
+    except KeyError:
+        flow.response = mitmproxy.http.Response.make(404, b"User not found")
+    except FileNotFoundError:
+        flow.response = mitmproxy.http.Response.make(500, f"{resource_type} file not found".encode())
+
+def request(flow: mitmproxy.http.HTTPFlow) -> None:
+    USERNAME = flow.request.path.split("/")[-1].split(".png")[0]
+    if flow.request.host == "s3.amazonaws.com":
+        if flow.request.path == f"/MinecraftSkins/{USERNAME}.png":
+            serve_image(flow, "skin")
+        elif flow.request.path == f"/MinecraftCloaks/{USERNAME}.png":
+            serve_image(flow, "cape")
