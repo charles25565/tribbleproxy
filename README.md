@@ -27,3 +27,11 @@ podman run -p 8080:8080 \
   -ti docker.io/mitmproxy/mitmproxy \
   mitmdump -s /tribbleproxy.py
 ```
+
+## Example Usage
+
+Add the following JVM arguments:
+
+```
+-http.proxyHost=localhost -http.proxyPort=8080
+```
