@@ -1,4 +1,4 @@
-# tribbleproxy
+# Tribbleproxy
 
 Tribbleproxy is a simple proxy that simulates the endpoints for skins and capes for old versions of Minecraft.
 
