@@ -6,11 +6,11 @@ with open("tribbleproxy.properties") as properties:
   CAPE = load(properties)["cape"]
 def response(flow: http.HTTPFlow) -> None:
   global USERNAME, SKIN, CAPE
-  if flow.request.host == "s3.amazonaws.com" && flow.request.path == f"/MinecraftSkins/{USERNAME}.png":
+  if flow.request.host == "s3.amazonaws.com" and flow.request.path == f"/MinecraftSkins/{USERNAME}.png":
     with open(SKIN, "rb") as skin:
       flow.response.content = skin.read()
       flow.response.status_code = 200
-  if flow.request.host == "s3.amazonaws.com" && flow.request.path == f"/MinecraftCloaks/{USERNAME}.png":
+  if flow.request.host == "s3.amazonaws.com" and flow.request.path == f"/MinecraftCloaks/{USERNAME}.png":
     with open(CAPE, "rb") as cape:
       flow.response.content = cape.read()
       flow.response.status_code = 200
