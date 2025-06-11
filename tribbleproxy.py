@@ -24,6 +24,7 @@ def request(flow: mitmproxy.http.HTTPFlow) -> None:
       serve_image(flow, "skin")
     elif flow.request.path == f"/MinecraftCloaks/{USERNAME}.png":
       serve_image(flow, "cape")
+      
   if flow.request.pretty_host == "www.minecraft.net":
     if flow.request.path.startswith("/game/joinserver.jsp"):
       flow.request.host = "session.minecraft.net"
