@@ -19,12 +19,15 @@ def serve_image(flow: mitmproxy.http.HTTPFlow, resource_type: str) -> None:
 
 def request(flow: mitmproxy.http.HTTPFlow) -> None:
   USERNAME = flow.request.path.split("/")[-1].split(".png")[0]
-  if flow.request.pretty_host == "s3.amazonaws.com":
+  if flow.request.pretty_host == "s3.amazonaws.com" or flow.request.pretty_host == "skins.minecraft.net":
     if flow.request.path == f"/MinecraftSkins/{USERNAME}.png":
       serve_image(flow, "skin")
     elif flow.request.path == f"/MinecraftCloaks/{USERNAME}.png":
       serve_image(flow, "cape")
-      
+
   if flow.request.pretty_host == "www.minecraft.net":
     if flow.request.path.startswith("/game/joinserver.jsp"):
       flow.request.host = "session.minecraft.net"
+
+  if flow.request.pretty_host == "snoop.minecraft.net":
+    flow.request.host = "snoop-minecraft-net.invalid"
