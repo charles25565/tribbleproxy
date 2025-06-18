@@ -1,8 +1,14 @@
 # Tribbleproxy
 
-Tribbleproxy is a simple proxy that simulates the endpoints for skins and capes for old versions of Minecraft. As a bonus, it also routes the `www.minecraft.net/game/joinserver.jsp` endpoint to the newer `session.minecraft.net` domain, and it also blocks snooper requests.
+Tribbleproxy is a simple proxy that simulates various endpoints used by much of Golden & Silver Age Minecraft.
 
-In theory it would work for any Minecraft version that uses `MinecraftSkins`/`MinecraftCloaks` URLs.
+## Features
+
+- :white_check_mark: <b1.8 authentication
+- :white_check_mark: Skins
+- :white_check_mark: Capes
+- :x: Snooper (intentionally blocked)
+- :x: 1.6 update notification (intentionally disabled)
 
 ## Example Configuration
 
