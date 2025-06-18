@@ -10,6 +10,12 @@ Tribbleproxy is a simple proxy that simulates various endpoints used by much of 
 - :x: Snooper (intentionally blocked)
 - :x: 1.6 update notification (intentionally disabled)
 
+## Compatible versions
+
+- :x: < Beta 1.2_02
+- :white_check_mark: Beta 1.2_02 - 1.8
+- :white_check_mark: 1.0.0 - 1.5.2
+
 ## Example Configuration
 
 Save this as `tribbleproxy.properties`.
