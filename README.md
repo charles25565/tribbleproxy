@@ -6,7 +6,7 @@ Tribbleproxy is a simple proxy that simulates various endpoints used by much of 
 
 - :white_check_mark: <b1.8 authentication
 - :white_check_mark: Skins
-- :white_check_mark: Capes
+- :x: Capes
 - :x: Snooper (intentionally blocked)
 - :x: 1.6 update notification (intentionally disabled)
 - :x: Non Minecraft traffic (intentionally blocked)
@@ -17,27 +17,11 @@ Tribbleproxy is a simple proxy that simulates various endpoints used by much of 
 - :white_check_mark: Beta 1.2_02 - 1.8
 - :white_check_mark: 1.0.0 - 1.5.2
 
-## Example Configuration
-
-Save this as `tribbleproxy.properties`.
-
-```json
-{
-  "charles25565": {
-    "skin": "skin.png",
-    "cape": "cape.png"
-  }
-}
-```
-
 ## Example Command
 
 ```bash
 podman run -p 8080:8080 \
   -v ./tribbleproxy.py:/tribbleproxy.py \
-  -v ./tribbleproxy.properties:/tribbleproxy.properties \
-  -v ./skin.png:/skin.png \
-  -v ./cape.png:/cape.png \
   -ti docker.io/mitmproxy/mitmproxy \
   mitmdump -s /tribbleproxy.py
 ```
