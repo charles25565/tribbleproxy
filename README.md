@@ -13,9 +13,8 @@ Tribbleproxy is a simple proxy that simulates various endpoints used by much of 
 
 ## Compatible versions
 
-- :x: < Beta 1.2_02
-- :white_check_mark: Beta 1.2_02 - 1.8
-- :white_check_mark: 1.0.0 - 1.5.2
+- Beta 1.2_02 - 1.8
+- Release 1.0.0 - 1.5.2
 
 ## Example Command
 
