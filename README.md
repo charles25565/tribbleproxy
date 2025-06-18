@@ -40,5 +40,5 @@ podman run -p 8080:8080 \
 Add the following JVM arguments:
 
 ```
--http.proxyHost=localhost -http.proxyPort=8080
+-Dhttp.proxyHost=localhost -Dhttp.proxyPort=8080
 ```
