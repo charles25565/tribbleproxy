@@ -13,7 +13,7 @@ Tribbleproxy is a simple proxy that simulates various endpoints used by much of 
 
 ## Compatible versions
 
-- Beta 1.2_02 - 1.8
+- Beta 1.2_02 - 1.8.1
 - Release 1.0.0 - 1.5.2
 
 ## Example Command
