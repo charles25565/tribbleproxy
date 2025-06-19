@@ -3,16 +3,16 @@ import urllib.request
 import json
 import base64
 
-def _get_uuid(username) -> str:
+def _get_uuid(username):
   with urllib.request.urlopen(f"https://api.minecraftservices.com/minecraft/profile/lookup/name/{username}") as response:
     return json.loads(response.read())["id"]
 
-def _get_profile_textures(uuid) -> dict:
+def _get_profile_textures(uuid):
   with urllib.request.urlopen(f"https://sessionserver.mojang.com/session/minecraft/profile/{uuid}") as response:
     textures = json.loads(base64.b64decode(json.loads(response.read())["properties"][0]["value"]))
     return textures["textures"]
 
-def _get_skin(textures) -> str:
+def _get_skin(textures):
   with urllib.request.urlopen(textures["SKIN"]["url"]) as response:
     return response.read()
 
@@ -23,7 +23,7 @@ def _get_cape(textures):
   except KeyError:
     return None
 
-def request(flow: mitmproxy.http.HTTPFlow) -> None:
+def request(flow: mitmproxy.http.HTTPFlow):
   username = flow.request.path.split("/")[-1].split(".png")[0]
   if flow.request.pretty_host == "s3.amazonaws.com" or flow.request.pretty_host == "skins.minecraft.net":
     if flow.request.path == "/MinecraftResources/":
