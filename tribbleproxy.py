@@ -1,17 +1,46 @@
 import mitmproxy
 import urllib.request
+import json
+import base64
+
+def _get_uuid(username) -> str:
+  with urllib.request.urlopen(f"https://api.minecraftservices.com/minecraft/profile/lookup/name/{username}") as response:
+    return json.loads(response.read())["id"]
+
+def _get_profile_textures(uuid) -> dict:
+  with urllib.request.urlopen(f"https://sessionserver.mojang.com/session/minecraft/profile/{uuid}") as response:
+    textures = json.loads(base64.b64decode(json.loads(response.read())["properties"][0]["value"]))
+    return textures["textures"]
+
+def _get_skin(textures) -> str:
+  with urllib.request.urlopen(textures["SKIN"]["url"]) as response:
+    return response.read()
+
+def _get_cape(textures):
+  try:
+    with urllib.request.urlopen(textures["CAPE"]["url"]) as response:
+      return response.read()
+  except KeyError:
+    return None
 
 def request(flow: mitmproxy.http.HTTPFlow) -> None:
-  USERNAME = flow.request.path.split("/")[-1].split(".png")[0]
+  username = flow.request.path.split("/")[-1].split(".png")[0]
   if flow.request.pretty_host == "s3.amazonaws.com" or flow.request.pretty_host == "skins.minecraft.net":
     if flow.request.path == "/MinecraftResources/":
       flow.response = mitmproxy.http.Response.make(404)
-    elif flow.request.path == f"/MinecraftSkins/{USERNAME}.png":
-      with urllib.request.urlopen(f"https://mineskin.eu/skin/{USERNAME}") as skin:
-        flow.response = mitmproxy.http.Response.make(200, skin.read(), {"Content-Type": "image/png"})
-    elif flow.request.path == f"/MinecraftCloaks/{USERNAME}.png":
-      # TODO: Capes
-      flow.response = mitmproxy.http.Response.make(404)
+    elif flow.request.path == f"/MinecraftSkins/{username}.png":
+      uuid = _get_uuid(username)
+      textures = _get_profile_textures(uuid)
+      skin = _get_skin(textures)
+      flow.response = mitmproxy.http.Response.make(200, skin, {"Content-Type": "image/png"})
+    elif flow.request.path == f"/MinecraftCloaks/{username}.png":
+      uuid = _get_uuid(username)
+      textures = _get_profile_textures(uuid)
+      cape = _get_cape(textures)
+      if cape:
+        flow.response = mitmproxy.http.Response.make(200, cape, {"Content-Type": "image/png"})
+      else:
+        flow.response = mitmproxy.http.Response.make(404)
   elif flow.request.pretty_host == "www.minecraft.net":
     if flow.request.path.startswith("/game/joinserver.jsp"):
       flow.request.host = "session.minecraft.net"
