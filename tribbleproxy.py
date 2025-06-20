@@ -3,9 +3,15 @@ import urllib.request
 import json
 import base64
 
+_uuid_cache = {}
+
 def _get_uuid(username):
+  if username in _uuid_cache:
+    return _uuid_cache[username]
   with urllib.request.urlopen(f"https://api.minecraftservices.com/minecraft/profile/lookup/name/{username}") as response:
-    return json.loads(response.read())["id"]
+    uuid = json.loads(response.read())["id"]
+    _uuid_cache[username] = uuid
+    return uuid
 
 def _get_profile_textures(uuid):
   with urllib.request.urlopen(f"https://sessionserver.mojang.com/session/minecraft/profile/{uuid}") as response:
