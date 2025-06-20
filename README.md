@@ -7,9 +7,10 @@ Tribbleproxy is a simple proxy that simulates various endpoints used by much of 
 - :white_check_mark: <b1.8 authentication
 - :white_check_mark: Skins
 - :white_check_mark: Capes
-- :x: Snooper (intentionally blocked)
-- :x: 1.6 update notification (intentionally disabled)
-- :x: Non Minecraft traffic (intentionally blocked)
+- :x: Snooper
+- :x: 1.6 update notification
+- :x: Non Minecraft traffic
+- :x: Resources
 
 ## Compatible versions
 
