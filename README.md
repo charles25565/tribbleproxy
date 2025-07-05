@@ -21,6 +21,7 @@ Tribbleproxy is a simple proxy that simulates various endpoints used by much of 
 
 ```bash
 podman run -p 8080:8080 \
+  --rm \
   -v ./tribbleproxy.py:/tribbleproxy.py \
   -ti docker.io/mitmproxy/mitmproxy \
   mitmdump -s /tribbleproxy.py
