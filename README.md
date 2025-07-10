@@ -1,10 +1,10 @@
 # Tribbleproxy
 
-Tribbleproxy is a simple proxy that simulates various endpoints used by much of Golden & Silver Age Minecraft.
+Tribbleproxy is a simple proxy that simulates various endpoints used in Minecraft: Java Edition between 2009 and 2013.
 
 ## Features
 
-- :white_check_mark: <b1.8 authentication
+- :white_check_mark: <b1.8 multiplayer authentication
 - :white_check_mark: Skins
 - :white_check_mark: Capes
 - :x: Snooper
