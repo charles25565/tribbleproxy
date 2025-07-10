@@ -14,6 +14,8 @@ Tribbleproxy is a simple proxy that simulates various endpoints used by much of 
 
 ## Compatible versions
 
+- Classic &#8805; 0.0.18a
+- Indev
 - Infdev
 - Alpha
 - Beta
