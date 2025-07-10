@@ -31,7 +31,11 @@ def _get_cape(textures):
     return None
 
 def request(flow: mitmproxy.http.HTTPFlow):
-  username = flow.request.path.split("/")[-1].split(".png")[0]
+  if flow.request.path.startswith("/cloak/get.jsp"):
+    username = flow.request.path.split("?user=")[-1]
+  else:
+    username = flow.request.path.split("/")[-1].split(".png")[0]
+
   if flow.request.pretty_host == "s3.amazonaws.com" or flow.request.pretty_host == "skins.minecraft.net":
     if flow.request.path == "/MinecraftResources/":
       flow.response = mitmproxy.http.Response.make(404)
@@ -54,6 +58,19 @@ def request(flow: mitmproxy.http.HTTPFlow):
   elif flow.request.pretty_host == "www.minecraft.net":
     if flow.request.path.startswith("/game/joinserver.jsp"):
       flow.request.host = "session.minecraft.net"
+    elif flow.request.path == f"/skin/{username}.png":
+      uuid = _get_uuid(username)
+      textures = _get_profile_textures(uuid)
+      skin = _get_skin(textures)
+      flow.response = mitmproxy.http.Response.make(200, skin, {"Content-Type": "image/png"})
+    elif flow.request.path.startswith("/cloak/get.jsp"):
+      uuid = _get_uuid(username)
+      textures = _get_profile_textures(uuid)
+      cape = _get_cape(textures)
+      if cape:
+        flow.response = mitmproxy.http.Response.make(200, cape, {"Content-Type": "image/png"})
+      else:
+        flow.response = mitmproxy.http.Response.make(404)
       
   elif flow.request.pretty_host == "snoop.minecraft.net":
     flow.request.host = "snoop-minecraft-net.invalid"
