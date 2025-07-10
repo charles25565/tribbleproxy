@@ -4,7 +4,7 @@ Tribbleproxy is a simple proxy that simulates various endpoints used in Minecraf
 
 ## Features
 
-- :white_check_mark: <b1.8 multiplayer authentication
+- :white_check_mark: Late Alpha through Beta 1.7.3 multiplayer authentication
 - :white_check_mark: Skins
 - :white_check_mark: Capes
 - :x: Snooper
