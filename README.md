@@ -14,12 +14,12 @@ Tribbleproxy is a simple proxy that simulates various endpoints used in Minecraf
 
 ## Compatible versions
 
-- Classic &#8805; 0.0.18a
+- Classic 0.0.18a onwards
 - Indev
 - Infdev
 - Alpha
 - Beta
-- Release &#8804; 1.5.2
+- Releases until 1.5.2
 
 ## Example Command
 
