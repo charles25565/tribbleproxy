@@ -78,6 +78,9 @@ def request(flow: mitmproxy.http.HTTPFlow):
   elif flow.request.pretty_host == "assets.minecraft.net":
     if flow.request.path == "/1_6_has_been_released.flag":
       flow.response = mitmproxy.http.Response.make(404)
-      
+
+  elif flow.request.pretty_host == "session.minecraft.net":
+    pass
+  
   else:
     flow.kill()
