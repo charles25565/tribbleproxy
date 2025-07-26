@@ -56,7 +56,7 @@ def request(flow: mitmproxy.http.HTTPFlow):
         flow.response = mitmproxy.http.Response.make(404)
         
   elif flow.request.pretty_host == "www.minecraft.net":
-    if flow.request.path.startswith("/game/joinserver.jsp"):
+    if flow.request.path.startswith("/game/joinserver.jsp") or flow.request.path.startswith("/game/checkserver.jsp"):
       flow.request.host = "session.minecraft.net"
     elif flow.request.path == f"/skin/{username}.png":
       uuid = _get_uuid(username)
