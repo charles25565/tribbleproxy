@@ -23,12 +23,10 @@ Tribbleproxy is a simple proxy that simulates various endpoints used in Minecraf
 
 ## Example Command
 
-```bash
+```sh
 podman run -p 8080:8080 \
   --rm \
-  -v ./tribbleproxy.py:/tribbleproxy.py \
-  -ti docker.io/mitmproxy/mitmproxy \
-  mitmdump -s /tribbleproxy.py
+  -ti ghcr.io/charles19132/tribbleproxy:main
 ```
 
 ## Example Usage
