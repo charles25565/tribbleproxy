@@ -3,9 +3,11 @@ import urllib.request
 import json
 import base64
 
+# Mojang's servers have extremely heavy ratelimits for UUID requests
 _uuid_cache = {}
 
 def _get_uuid(username):
+  # TODO: Deal with username swaps
   if username in _uuid_cache:
     return _uuid_cache[username]
   with urllib.request.urlopen(f"https://api.minecraftservices.com/minecraft/profile/lookup/name/{username}") as response:
