@@ -7,10 +7,10 @@ Tribbleproxy is a simple proxy that simulates various endpoints used in Minecraf
 - :white_check_mark: Late Alpha through Beta 1.7.3 multiplayer authentication
 - :white_check_mark: Skins
 - :white_check_mark: Capes
+- :white_check_mark: 1.6 update notification (spoofs as if it isn't out)
 - :x: Snooper
-- :x: 1.6 update notification
-- :x: Non Minecraft traffic
 - :x: Resources
+- :x: Non Minecraft traffic
 
 ## Compatible versions
 
@@ -19,7 +19,7 @@ Tribbleproxy is a simple proxy that simulates various endpoints used in Minecraf
 - Infdev
 - Alpha
 - Beta
-- Releases until 1.5.2
+- Releases until and including 1.5.2
 
 ## Example Command
 
