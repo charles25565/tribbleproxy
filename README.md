@@ -8,7 +8,7 @@ Tribbleproxy is a simple proxy that simulates various endpoints used in Minecraf
 - :white_check_mark: Skins
 - :white_check_mark: Capes
 - :white_check_mark: 1.6 update notification (spoofs as if it isn't out)
-- :x: Snooper
+- :x: Snooper (blocks)
 - :x: Resources
 - :x: Non Minecraft traffic
 
