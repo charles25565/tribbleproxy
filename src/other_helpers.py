@@ -1,5 +1,3 @@
-# Copyright 2025 Charles
-
 import urllib.parse
 
 
