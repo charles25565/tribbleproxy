@@ -1,3 +1,5 @@
+# Copyright 2025 Charles
+
 import mitmproxy
 import other_helpers
 import flow_logic
