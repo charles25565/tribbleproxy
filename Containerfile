@@ -4,4 +4,4 @@ COPY src/ /app
 
 EXPOSE 8080
 
-ENTRYPOINT ["/app/run.sh"]
+ENTRYPOINT ["/app/entrypoint.sh"]
