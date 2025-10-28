@@ -9,5 +9,5 @@ def get_username(flow):
             username = flow.request.path.split("/")[-1].split(".png")[0]
         username = urllib.parse.unquote(username)
     except IndexError:
-        return "FALLBACK-INVALID!!!"
+        return "MHF_Steve"
     return username
