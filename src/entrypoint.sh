@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script exists because the container is not running with -t, there will be no logs.
+# This script exists because when the container is not running with -t, there will be no logs.
 # By disabling the Python buffer, we circumvent this.
 
 mitmproxy="/usr/local/bin/mitmdump"
