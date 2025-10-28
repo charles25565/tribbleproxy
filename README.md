@@ -26,7 +26,7 @@ Tribbleproxy is a simple proxy that simulates various endpoints used in Minecraf
 ```sh
 podman run -p 8080:8080 \
   --rm \
-  -ti ghcr.io/charles25565/tribbleproxy:latest
+  ghcr.io/charles25565/tribbleproxy:latest
 ```
 
 ## Example Usage
