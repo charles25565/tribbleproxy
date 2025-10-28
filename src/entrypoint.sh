@@ -8,4 +8,4 @@ entrypoint="main.py"
 
 cd -- "$(dirname -- "${BASH_SOURCE[0]}")"
 
-exec $(head -n 1 -- "$mitmproxy" | sed "s/#!//g") -u "$mitmproxy" -s "$entrypoint"
+exec $(head -n 1 "$mitmproxy" | sed "s/#!//g") -u "$mitmproxy" -s "$entrypoint"
