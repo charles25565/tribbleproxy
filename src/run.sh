@@ -6,8 +6,8 @@
 mitmproxy="/usr/local/bin/mitmdump"
 entrypoint="main.py"
 
-pushd -- "$(dirname -- "${BASH_SOURCE[0]}")"
+pushd -- "$(dirname -- "${BASH_SOURCE[0]}")" > /dev/null
 
 $(head -n 1 -- "$mitmproxy" | sed "s/#!//g") -u "$mitmproxy" -s "$entrypoint"
 
-popd
+popd > /dev/null
